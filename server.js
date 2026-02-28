@@ -137,6 +137,41 @@ app.get('/api/students/:id', (req, res) => {
   });
 });
 
+// Register new student
+app.post('/api/students/register', (req, res) => {
+  const { name, email, password, teacher_id } = req.body;
+
+  if (!name || !email || !password || !teacher_id) {
+    return res.status(400).json({ error: 'Nome, email, senha e teacher_id sao obrigatorios' });
+  }
+
+  // Check if email already exists
+  if (users.students.find(s => s.email === email)) {
+    return res.status(400).json({ error: 'Email ja cadastrado' });
+  }
+
+  // Create new student
+  const newStudent = {
+    id: Math.max(...users.students.map(s => s.id), 0) + 1,
+    name,
+    email,
+    password,
+    teacher_id: parseInt(teacher_id),
+    type: 'student'
+  };
+
+  users.students.push(newStudent);
+
+  res.status(201).json({
+    message: 'Aluno cadastrado com sucesso',
+    student: {
+      id: newStudent.id,
+      name: newStudent.name,
+      email: newStudent.email
+    }
+  });
+});
+
 // Error handling
 app.use((err, req, res, next) => {
   console.error('Error:', err);
