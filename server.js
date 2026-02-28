@@ -52,11 +52,10 @@ app.post('/api/auth/teacher/login', (req, res) => {
 
   res.json({
     token,
-    user: {
+    teacher: {
       id: teacher.id,
       name: teacher.name,
-      email: teacher.email,
-      type: 'teacher'
+      email: teacher.email
     }
   });
 });
@@ -83,11 +82,11 @@ app.post('/api/auth/student/login', (req, res) => {
 
   res.json({
     token,
-    user: {
+    student: {
       id: student.id,
       name: student.name,
       email: student.email,
-      type: 'student'
+      level: 'A2'
     }
   });
 });
