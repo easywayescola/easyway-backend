@@ -12,13 +12,12 @@ const JWT_SECRET = 'easyway-secret-key-2024';
 app.use(cors());
 app.use(express.json());
 
-// Database setup
-const dbPath = process.env.DB_PATH || path.join('/tmp', 'easyway.db');
-const db = new sqlite3.Database(dbPath, (err) => {
+// Database setup - Use in-memory database for reliability
+const db = new sqlite3.Database(':memory:', (err) => {
   if (err) {
     console.error('❌ Error opening database:', err);
   } else {
-    console.log('✅ Database connected at:', dbPath);
+    console.log('✅ Database connected (in-memory)');
     initializeDatabase();
   }
 });
