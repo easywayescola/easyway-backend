@@ -52,19 +52,19 @@ function initializeDatabase() {
 
     // Insert default teacher if not exists
     db.run(
-      `INSERT OR IGNORE INTO teachers (name, email, password) VALUES (?, ?, ?)`,
-      ['Professor', 'professor@easyway.com', 'senha123']
+      `INSERT OR IGNORE INTO teachers (name, email, password) VALUES (?, ?, ?)`
+      ['Professor', 'professor@easyway.com.br', 'senha123']
     );
 
     // Insert default students if not exist
     db.run(
       `INSERT OR IGNORE INTO students (name, email, password, teacher_id) VALUES (?, ?, ?, 1)`,
-      ['Aluno 1', 'aluno1@easyway.com', 'senha123']
+      ['Aluno 1', 'aluno1@easyway.com.br', 'senha123']
     );
 
     db.run(
       `INSERT OR IGNORE INTO students (name, email, password, teacher_id) VALUES (?, ?, ?, 1)`,
-      ['Aluno 2', 'aluno2@easyway.com', 'senha123']
+      ['Aluno 2', 'aluno2@easyway.com.br', 'senha123']
     );
 
     console.log('✅ Database initialized with default users');
@@ -221,9 +221,9 @@ app.listen(PORT, () => {
   console.log(`📍 API: http://localhost:${PORT}/api`);
   console.log(`🏥 Health: http://localhost:${PORT}/api/health`);
   console.log(`\n📋 Default Credentials:`);
-  console.log(`   Professor: professor@easyway.com / senha123`);
-  console.log(`   Aluno 1: aluno1@easyway.com / senha123`);
-  console.log(`   Aluno 2: aluno2@easyway.com / senha123\n`);
+  console.log(`   Professor: professor@easyway.com.br / senha123`);
+  console.log(`   Aluno 1: aluno1@easyway.com.br / senha123`);
+  console.log(`   Aluno 2: aluno2@easyway.com.br / senha123\n`);
 });
 
 // Graceful shutdown
